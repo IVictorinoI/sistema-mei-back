@@ -1,7 +1,7 @@
 const Receber = require('./receber')
 const errorHandler = require('../common/errorHandler.js')
 
-Receber.methods(['get', 'put', 'post'])
+Receber.methods(['get', 'put', 'post', 'delete'])
 Receber.updateOptions({new: true, runValidators: true})
 Receber.after('post', errorHandler).after('put', errorHandler)
 

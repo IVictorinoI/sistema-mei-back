@@ -7,9 +7,6 @@ const allowCors = require('./cors')
 const queryParser = require('express-query-int')
 
 
-global.CodigoAssembleiaAtiva = 124
-
-
 server.use(bodyParser.urlencoded({ extended: true }))
 server.use(bodyParser.json())
 server.use(allowCors)

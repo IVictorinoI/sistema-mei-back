@@ -16,11 +16,6 @@ const baixaReceberSchema = new mongoose.Schema({
     data: { type: Date, default: Date.now, required: true },
     valor: { type: Number, min: 0, required: true },
 
-    pessoa: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Pessoa',
-        required: true
-    },
     titulos: [baixaReceberTituloSchema]
 })
 

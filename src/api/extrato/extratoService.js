@@ -1,7 +1,7 @@
 const Extrato = require('./extrato')
 const errorHandler = require('../common/errorHandler.js')
 
-Extrato.methods(['get', 'put', 'post'])
+Extrato.methods(['get', 'put', 'post', 'delete'])
 Extrato.updateOptions({new: true, runValidators: true})
 Extrato.after('post', errorHandler).after('put', errorHandler)
 
