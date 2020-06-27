@@ -6,10 +6,10 @@ const extratoSchema = new mongoose.Schema({
     valor: { type: Number, min: 0, required: true },
     data: { type: Date, default: Date.now, required: true },
 
-    tipo: { type: String, required: false, uppercase: true,
+    tipo: { type: String, required: true, uppercase: true, default: 'SAIDA',
         enum: ['ENTRADA', 'SAIDA'] },
 
-    origem: { type: String, required: false, uppercase: true,
+    origem: { type: String, required: true, uppercase: true, default: 'MANUAL',
         enum: ['MANUAL', 'RECEBER', 'PAGAR'] },
 
     pessoa: {

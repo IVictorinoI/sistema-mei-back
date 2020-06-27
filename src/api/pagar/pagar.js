@@ -7,8 +7,8 @@ const pagarSchema = new mongoose.Schema({
     dataEmissao: { type: Date, default: Date.now, required: true },
     dataVencimento: { type: Date, default: Date.now, required: true },
     valor: { type: Number, min: 0, required: true },
-    valorPago: { type: Number, min: 0, required: true },
-    status: { type: String, required: false, uppercase: true,
+    valorPago: { type: Number, min: 0, default: 0, required: true },
+    status: { type: String, required: false, uppercase: true, default: 'ABERTO',
         enum: ['ABERTO', 'PARCIAL', 'PAGO'] },
     
     pessoa: {

@@ -7,8 +7,8 @@ const receberSchema = new mongoose.Schema({
     dataEmissao: { type: Date, default: Date.now, required: true },
     dataVencimento: { type: Date, default: Date.now, required: true },
     valor: { type: Number, min: 0, required: true },
-    valorRecebido: { type: Number, min: 0, required: true },
-    status: { type: String, required: false, uppercase: true,
+    valorRecebido: { type: Number, min: 0, default: 0, required: true },
+    status: { type: String, required: true, uppercase: true, default: 'ABERTO',
         enum: ['ABERTO', 'PARCIAL', 'PAGO'] },
     
     pessoa: {
