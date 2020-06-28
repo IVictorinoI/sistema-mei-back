@@ -22,6 +22,7 @@ const vendaParcSchema = new mongoose.Schema({
 const vendaSchema = new mongoose.Schema({   
     data: { type: Date, default: Date.now, required: true },
     valor: { type: Number, min: 0, default: 0, required: true },
+    pago: { type: Boolean, default: false, required: true },
 
     pessoa: {
         type: mongoose.Schema.Types.ObjectId,
@@ -35,6 +36,18 @@ const vendaSchema = new mongoose.Schema({
     },
     itens: [vendaItemSchema],
     parcelas: [vendaParcSchema],
+})
+
+
+
+vendaSchema.pre('save', function (next) {
+    this.itens.forEach(p => {
+        p.total = (p.preco * p.quantidade) - p.desconto
+    });
+
+    this.valor = this.itens.map((p) => p.total).reduce((a, b) => a + b, 0)
+
+    next();
 })
 
 module.exports = restful.model('Venda', vendaSchema)

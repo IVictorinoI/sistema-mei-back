@@ -2,7 +2,6 @@ const restful = require('node-restful')
 const mongoose = restful.mongoose
 
 const pagarSchema = new mongoose.Schema({
-    numero: { type: Number, min: 1, required: true },
     descricao: { type: String, required: true },
     dataEmissao: { type: Date, default: Date.now, required: true },
     dataVencimento: { type: Date, default: Date.now, required: true },
@@ -16,6 +15,17 @@ const pagarSchema = new mongoose.Schema({
         ref: 'Pessoa',
         required: true
     }    
+})
+
+pagarSchema.method('baixar', async function (dto) {
+    this.valorPago += parseFloat(dto.valorPago);
+
+    if(this.valorPago<this.valor)
+        this.status = 'PARCIAL'
+    else 
+        this.status = 'PAGO'
+
+    await this.save();
 })
 
 module.exports = restful.model('Pagar', pagarSchema)
