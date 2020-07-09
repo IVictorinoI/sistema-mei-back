@@ -6,8 +6,8 @@ const itemSchema = new mongoose.Schema({
     unidade: { type: String, required: true },
     precoVenda: { type: Number, min: 0 },
     inativo: { type: Boolean },
-    compra: { type: Boolean },
-    vende: { type: Boolean }
+    vende: { type: Boolean },
+    compra: { type: Boolean }
 })
 
 module.exports = restful.model('Item', itemSchema)
